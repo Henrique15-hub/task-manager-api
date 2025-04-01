@@ -1,7 +1,7 @@
 # Desafio To-do (API)
 - Este desafio tem como objetivo de testar os conhecimentos com a linguagem php e com framework Laravel para uma api, sem a necessidade de qualquer tela front-end.
 
-## Clonar projeto ma maquina e criar uma branch e subir as alterações na branch;
+## Clonar projeto ma maquina, criar uma branch e subir as alterações na branch;
 
 ## O que devemos conseguir fazer quando o teste for concluído?
 ### Tarefa:
