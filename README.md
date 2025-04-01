@@ -43,3 +43,4 @@
 5. no controller, utilizar form request para validar os dados de entrada;
    consultar na documentação: [Creating Form Requests](https://laravel.com/docs/12.x/validation#creating-form-requests)
 6. assistir videos expecificos para a duvida no youtube;
+7. usar como padrão de retorno no controller response()->json()
