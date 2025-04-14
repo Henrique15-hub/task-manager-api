@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AuthUserRequest extends FormRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -19,15 +17,15 @@ class AuthUserRequest extends FormRequest
             'email' => [
                 'required',
                 'max:255',
-                'string'
+                'string',
             ],
 
-            'password' =>[
+            'password' => [
                 'required',
                 'min:6',
                 'max:255',
-                'string'
-            ]
+                'string',
+            ],
         ];
     }
 }

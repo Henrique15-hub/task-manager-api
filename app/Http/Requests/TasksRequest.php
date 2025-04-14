@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TasksRequest extends FormRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -20,17 +18,14 @@ class TasksRequest extends FormRequest
                 'required',
                 'min:3',
                 'max:255',
-                'string'
+                'string',
             ],
 
             'hours' => [
                 'string',
                 'nullable',
-
-
-
+                'date_format:H:i',
             ],
-
 
         ];
     }

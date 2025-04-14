@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')
-            ->onDelete('cascade');
+                ->onDelete('cascade');
             $table->string('name');
             $table->string('hours');
             $table->timestamps();
-            
+
         });
     }
 

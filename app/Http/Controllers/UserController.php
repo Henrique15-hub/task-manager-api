@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreUserRequest;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
@@ -20,9 +20,14 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): JsonResponse
     {
         $validatedData = $request->validated();
+        if (empty($validatedData)) {
+            return response()->json([
+                'message' => 'invalid data',
+            ]);
+        }
         $user = User::create($validatedData);
 
         return response()->json($user);
@@ -31,20 +36,36 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id): JsonResponse
     {
         $user = User::find($id);
-        return response()->json($user);
+        if (! $user) {
+            return response()->json([
+                'message' => 'user not found',
+            ], 404);
+        }
 
+        return response()->json($user);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, string $id)
+    public function update(UpdateUserRequest $request, int $id): JsonResponse
     {
         $validatedData = $request->validated();
+        if (! $validatedData) {
+            return response()->json([
+                'message' => 'invalid data',
+            ]);
+        }
         $user = User::find($id);
+        if (! $user) {
+            return response()->json([
+                'message' => 'user not found',
+            ], 404);
+        }
+
         $user->update($validatedData);
 
         return response()->json($user);
@@ -53,11 +74,18 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id): JsonResponse
     {
         $user = User::find($id);
+        if (! $user) {
+            return response()->json([
+                'message' => 'user not found',
+            ], 404);
+        }
         $user->delete();
 
-        return response()->json();
+        return response()->json([
+            'message' => 'user deleted.',
+        ]);
     }
 }

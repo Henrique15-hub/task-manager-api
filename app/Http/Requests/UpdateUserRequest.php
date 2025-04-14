@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserRequest extends FormRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,17 +14,16 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' =>[
+            'email' => [
                 'string',
                 'max:255',
-                
             ],
 
             'password' => [
                 'max:255',
                 'min:6',
-                'required'
-            ]
+                'required',
+            ],
         ];
     }
 }
