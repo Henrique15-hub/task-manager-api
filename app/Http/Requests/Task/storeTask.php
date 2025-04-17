@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Task;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class storeTask extends FormRequest
 {
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,22 +17,14 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => [
                 'required',
+                'string',
+                'max:255',
                 'min:3',
-                'max:255',
-                'string',
             ],
 
-            'email' => [
+            'hours' => [
                 'required',
-                'max:255',
-                'string',
-                'unique:users',
-            ],
-
-            'password' => [
-                'required',
-                'min:6',
-                'max:255',
+               'date_format:H:i',
             ],
         ];
     }

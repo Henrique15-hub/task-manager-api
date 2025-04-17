@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Task extends Model
 {
     protected $fillable = [
+        'user_id',
         'name',
         'hours',
-        'user_id',
     ];
 
-    public function user(): BelongsTo
+    public function user():BelongsTo
     {
-        return $this->belongsTo(User::class);
+       return $this->belongsTo(User::class);
     }
 }

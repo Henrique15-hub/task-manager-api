@@ -1,48 +1,66 @@
-# Desafio To-do (API)
-- Este desafio tem como objetivo de testar os conhecimentos com a linguagem php e com framework Laravel para uma api, sem a necessidade de qualquer tela front-end.
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-## Clonar projeto na maquina, criar uma branch e subir as alterações na branch;
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## O que devemos conseguir fazer quando o teste for concluído?
-### Tarefa:
-1. Listar todas as tarefas do usuário logado; -V
-2. Listar uma tarefa específica; -V
-3. Criar uma tarefa; -V
-4. Editar uma tarefa; -V
-5. Deletar uma tarefa; -V
+## About Laravel
 
-### User:
-1. Logar usuário; -V
-2. Deslogar usuário; -V
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-### Rotas:
-1. Acessar as rotas pela API; -V
-2. Apenas usuários logados devem conseguir executar as ações do tópico `Tarefa`; -V
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## O que será havaliado?
-1. Exigencias dos topicos Tarefa, User e Rotas;
-2. Padrões de retorno das rotas;
-3. Relacionamento da tarefa com o usuario;
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Learning Laravel
 
-## Dicas:
-1. os nomes das funções devem ser camelCase sendo que a primeira letra deve ser minúscula e os metodos deve seguir o padrão da documentação;
-   Ex:
-   * index (listar todas as tarefas)
-   * store (criar tarefa)
-   * show (listar uma tarefa expecífica)
-   * update (atualizar uma tarefa expecífica)
-   * destroy (apagar uma tarefa expecífica)
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-   -V
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-   consultar na documentação: [Actions Handled by Resource Controllers](https://laravel.com/docs/12.x/controllers#actions-handled-by-resource-controllers)
-2. usar banco de dados sqlite; -V
-3. analizar padronização dos nomes das classes, exemplo a classe controller;
-   * Ex: TarefaController -V
-4. a model `Tarefa` deve ter um relacionamento belogsTo com `User`;
-   consultar na documentação: [Belongs To Relationships](https://laravel.com/docs/12.x/eloquent-factories#belongs-to-relationships)
-5. no controller, utilizar form request para validar os dados de entrada;
-   consultar na documentação: [Creating Form Requests](https://laravel.com/docs/12.x/validation#creating-form-requests) -V
-6. assistir videos expecificos para a duvida no youtube; -V
-7. usar como padrão de retorno no controller response()->json() -V
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+
+## Laravel Sponsors
+
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+
+### Premium Partners
+
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TasksRequest extends FormRequest
+class UserStore extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,19 +14,27 @@ class TasksRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
+            'name' =>[
                 'required',
+                'string',
                 'min:3',
                 'max:255',
-                'string',
             ],
 
-            'hours' => [
+            'email' => [
+                'required',
                 'string',
-                'nullable',
-                'date_format:H:i',
+                'email',
+                'max:255',
+                'unique:users,email',
             ],
 
+            'password' => [
+                'required',
+                'min:6',
+                'string',
+                
+            ],
         ];
     }
 }

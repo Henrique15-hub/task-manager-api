@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Task;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class updateTask extends FormRequest
 {
+
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -17,19 +19,14 @@ class UpdateUserRequest extends FormRequest
             'name' => [
                 'nullable',
                 'string',
-                'min:3'
-            ],
-
-            'email' => [
-                'string',
+                'min:3',
                 'max:255',
             ],
 
-            'password' => [
-                'max:255',
-                'min:6',
-                'required',
-            ],
+            'hours' => [
+                'nullable',
+                'date_format:H:i'
+            ]
         ];
     }
 }

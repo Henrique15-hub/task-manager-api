@@ -1,26 +1,43 @@
 <?php
 
-use App\Http\Controllers\AuthUserController;
-use App\Http\Controllers\TasksController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserApiController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('users', 'index');
-    Route::get('users/{id}', 'show');
-    Route::post('users/store', 'store')->name('store');
-    Route::put('users/update/{id}', 'update');
-    Route::delete('users/delete/{id}', 'destroy');
-});
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 
-Route::controller(AuthUserController::class)->group(function () {
-    Route::post('users/login', 'login');
-    Route::post('users/logout', 'logout')->middleware('auth:sanctum');
-});
 
-Route::controller(TasksController::class)->middleware('auth:sanctum')->group(function () {
-    Route::get('tasks', 'index');
-    Route::post('tasks/create', 'store');
-    Route::get('tasks/{id}', 'show');
-    Route::put('tasks/update/{id}', 'update');
-    Route::delete('tasks/delete/{id}', 'destroy');
-});
+Route::controller(UserApiController::class)
+    ->prefix('user')
+    ->group(function (){
+        Route::get('index','index')->name('indexUser');
+        Route::post('store','store')->name('storeUser');
+        Route::get('show/{id}','show')->name('showUser');
+        Route::put('update/{id}','update')->name('updateUser');
+        Route::delete('destroy/{id}', 'destroy')->name('destroyUser');
+    });
+
+
+
+Route::controller(AuthController::class)
+    ->prefix('auth')
+    ->group(function (){
+        Route::post('login', 'login')->name('login');
+        Route::post('logout', 'logout')->name('logout')->middleware('auth:sanctum');
+    });
+
+
+Route::controller(TaskController::class)
+    ->prefix('task')
+    ->middleware('auth:sanctum')
+    ->group(function (){
+        Route::get('index', 'index')->name('indexTask');
+        Route::post('store','store')->name('storeTask');
+        Route::get('show/{id}','show')->name('showTask');
+        Route::put('update/{id}','update')->name('updateTask');
+        Route::delete('destroy/{id}', 'destroy')->name('destroyTask');
+    });
