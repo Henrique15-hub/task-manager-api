@@ -1,66 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Meu Projeto de Tarefas - API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Esta é uma API para gerenciamento de tarefas. Com ela, você pode criar, editar, excluir e visualizar tarefas. A API foi construída utilizando o framework **Laravel** e segue os princípios de uma arquitetura RESTful.
 
-## About Laravel
+## Tecnologias Usadas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **PHP** - Linguagem principal para o backend.
+- **Laravel** - Framework PHP utilizado para o desenvolvimento da API.
+- **SQLite** - Banco de dados utilizado para armazenar as informações do projeto.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Endpoints da API
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. **Criar Tarefa**
+- **Método**: `POST`
+- **URL**: `/api/task/store`
+- **Descrição**: Valida os dados com um Form Request personalizado e em seguida cria a tarefa com uma FK vinculada ao usuario logado.
+- **Parâmetros**:
+  - `name` (string) - Nome da tarefa.
+  - `hours` (time) - horas da tarefa.
 
-## Learning Laravel
+### 2. **Listar Tarefas**
+- **Método**: `GET`
+- **URL**: `/api/task/index`
+- **Descrição**: Retorna todas as tarefas cadastradas do usuario logado.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 3. **Editar Tarefa**
+- **Método**: `PUT`
+- **URL**: `/api/task/update{id}`
+- **Descrição**: Edita uma tarefa existente do usuario logado.
+- **Parâmetros**:
+  - `name` (string) - Novo nome da tarefa (nullable).
+  - `hours` (time) - Novo horário da tarefa (nullable).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 4. **Deletar Tarefa**
+- **Método**: `DELETE`
+- **URL**: `/api/tasks/destroy{id}`
+- **Descrição**: Deleta uma tarefa do usuario logado.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Como Começar
 
-## Laravel Sponsors
+Siga os passos abaixo para rodar o projeto localmente.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Clone o Repositório
 
-### Premium Partners
+Clone o repositório para o seu ambiente local:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+`git clone https://github.com/usuario/projeto-de-tarefas-api.git`
 
-## Contributing
+2. Instalar as Dependências
+Após clonar o repositório, acesse o diretório do projeto e instale as dependências do Laravel:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`cd projeto-de-tarefas-api`
+`composer install`
 
-## Code of Conduct
+3. Configurar o Ambiente
+Crie um arquivo .env copiando o arquivo .env.example:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+`cp .env.example .env`
 
-## Security Vulnerabilities
+Em seguida, configure as variáveis de ambiente no arquivo .env (como banco de dados, e-mail, etc).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Gerar a Chave de Aplicação
+Execute o comando abaixo para gerar a chave de aplicação do Laravel:
 
-## License
+`php artisan key:generate`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Rodar as Migrations
+Se você estiver utilizando MySQL ou outro banco de dados, rode as migrations para criar as tabelas necessárias:
+
+`php artisan migrate`
+
+6. Iniciar o Servidor Local
+Inicie o servidor local para acessar a API:
+
+`php artisan serve`
+
+Agora, você pode acessar a API através de http://localhost:8000/api no seu navegador ou ferramentas de testes de API como Postman ou Insomnia.
