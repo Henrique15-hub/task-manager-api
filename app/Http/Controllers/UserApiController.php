@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\User\UserUpdate;
-use Illuminate\Http\JsonResponse;
 use App\Http\Requests\User\UserStore;
-
+use App\Http\Requests\User\UserUpdate;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 
 class UserApiController extends Controller
 {
@@ -19,6 +15,7 @@ class UserApiController extends Controller
     public function index(): JsonResponse
     {
         $users = User::all();
+
         return response()->json($users);
     }
 
@@ -39,9 +36,15 @@ class UserApiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id):JsonResponse
+    public function show(int $id): JsonResponse
     {
-        $user = User::findorFail($id);
+        $user = User::find($id);
+
+        if (! $user) {
+            return response()->json([
+                'message' => 'user not found',
+            ], 404);
+        }
 
         return response()->json([
             'user' => $user,
@@ -54,7 +57,13 @@ class UserApiController extends Controller
     public function update(UserUpdate $request, int $id): JsonResponse
     {
         $validatedData = $request->validated();
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
+        if (! $user) {
+            return response()->json([
+                'message' => 'user not found',
+            ], 404);
+        }
 
         $user->update($validatedData);
 
@@ -69,11 +78,19 @@ class UserApiController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
+        if (! $user) {
+            return response()->json([
+                'message' => 'user not found',
+            ], 404);
+        }
+
+        $user->tokens->delete();
         $user->delete();
 
         return response()->json([
-            'message' => 'user deleted with success'
+            'message' => 'user deleted with success',
         ]);
     }
 }

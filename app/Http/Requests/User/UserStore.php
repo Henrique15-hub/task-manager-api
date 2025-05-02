@@ -14,7 +14,7 @@ class UserStore extends FormRequest
     public function rules(): array
     {
         return [
-            'name' =>[
+            'name' => [
                 'required',
                 'string',
                 'min:3',
@@ -33,7 +33,7 @@ class UserStore extends FormRequest
                 'required',
                 'min:6',
                 'string',
-                
+
             ],
         ];
     }

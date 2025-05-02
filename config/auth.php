@@ -42,7 +42,8 @@ return [
         ],
 
         'sacntum' => [
-            'driver' => 'sanctum'
+            'driver' => 'sanctum',
+            'provider' => 'users',
         ],
     ],
 

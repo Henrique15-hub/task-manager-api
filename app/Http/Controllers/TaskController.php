@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Task\storeTask;
 use App\Http\Requests\Task\updateTask;
 use App\Models\Task;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\Task\storeTask;
 
 class TaskController extends Controller
 {
@@ -16,6 +15,7 @@ class TaskController extends Controller
     public function index(): JsonResponse
     {
         $tasks = Task::all();
+
         return response()->json([
             'message' => 'showing all the tasks',
             'tasks' => $tasks,
@@ -28,13 +28,13 @@ class TaskController extends Controller
     public function store(storeTask $request): JsonResponse
     {
         $validatedData = $request->validated();
-        $validatedData['user_id'] = auth()->id();
+        $validatedData['user_id'] = auth('sanctum')->id();
         $task = Task::create($validatedData);
 
         return response()->json([
             'message' => 'Task created with success',
             'task' => $task->fresh(),
-        ]);
+        ], 201);
     }
 
     /**
@@ -42,11 +42,17 @@ class TaskController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
+
+        if (! $task) {
+            return response()->json([
+                'message' => 'task not found',
+            ], 404);
+        }
 
         return response()->json([
             'message' => 'task found with success',
-            'task' => $task
+            'task' => $task,
         ]);
     }
 
@@ -56,7 +62,14 @@ class TaskController extends Controller
     public function update(updateTask $request, int $id): JsonResponse
     {
         $validatedData = $request->validated();
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
+
+        if (! $task) {
+            return response()->json([
+                'message' => 'task not found',
+            ], 404);
+        }
+
         $task->update($validatedData);
 
         return response()->json([
@@ -70,11 +83,18 @@ class TaskController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
+
+        if (! $task) {
+            return response()->json([
+                'message' => 'task not found',
+            ], 404);
+        }
+
         $task->delete();
 
         return response()->json([
-            'message' => 'task deleted with success'
+            'message' => 'task deleted with success',
         ]);
     }
 }

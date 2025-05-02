@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class updateTask extends FormRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,8 +23,8 @@ class updateTask extends FormRequest
 
             'hours' => [
                 'nullable',
-                'date_format:H:i'
-            ]
+                'date_format:H:i',
+            ],
         ];
     }
 }
