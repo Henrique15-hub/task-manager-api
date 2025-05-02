@@ -14,7 +14,8 @@ class TaskController extends Controller
      */
     public function index(): JsonResponse
     {
-        $tasks = Task::all();
+        $user = auth()->user();
+        $tasks = Task::where('user_id', $user->id);
 
         return response()->json([
             'message' => 'showing all the tasks',
@@ -44,7 +45,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        if (! $task) {
+        if (! $task or $task->user_id !== auth()->id()) {
             return response()->json([
                 'message' => 'task not found',
             ], 404);
@@ -64,7 +65,7 @@ class TaskController extends Controller
         $validatedData = $request->validated();
         $task = Task::find($id);
 
-        if (! $task) {
+        if (! $task or $task->user_id !== auth()->id()) {
             return response()->json([
                 'message' => 'task not found',
             ], 404);
@@ -85,7 +86,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        if (! $task) {
+        if (! $task or $task->user_id !== auth()->id()) {
             return response()->json([
                 'message' => 'task not found',
             ], 404);

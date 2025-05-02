@@ -12,10 +12,10 @@ Route::get('/user', function (Request $request) {
 
 Route::controller(UserApiController::class)
     ->prefix('user')
+    ->middleware('auth:sanctum')
     ->group(function () {
-        Route::get('index', 'index')->name('indexUser');
-        Route::post('store', 'store')->name('storeUser');
-        Route::get('show/{id}', 'show')->name('showUser');
+        Route::post('store', 'store')->name('storeUser')
+        ->withoutMiddleware('auth_sanctum');
         Route::put('update/{id}', 'update')->name('updateUser');
         Route::delete('destroy/{id}', 'destroy')->name('destroyUser');
     });

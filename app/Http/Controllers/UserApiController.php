@@ -9,15 +9,6 @@ use Illuminate\Http\JsonResponse;
 
 class UserApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): JsonResponse
-    {
-        $users = User::all();
-
-        return response()->json($users);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -31,24 +22,6 @@ class UserApiController extends Controller
             'message' => 'user created with success!',
             'user' => $user->fresh(),
         ], 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(int $id): JsonResponse
-    {
-        $user = User::find($id);
-
-        if (! $user) {
-            return response()->json([
-                'message' => 'user not found',
-            ], 404);
-        }
-
-        return response()->json([
-            'user' => $user,
-        ]);
     }
 
     /**
