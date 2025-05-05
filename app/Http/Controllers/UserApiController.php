@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 
 class UserApiController extends Controller
 {
-
     /**
      * Store a newly created resource in storage.
      */

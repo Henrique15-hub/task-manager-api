@@ -54,4 +54,29 @@ class TaskFeatureTest extends TestCase
             ]);
 
     }
+
+    public function test_user_not_logged_cannot_create_task()
+    {
+        $user = User::factory()->create();
+
+        $task = Task::factory()->make()->toArray();
+
+        $response = $this->postJson(route('storeTask'), $task)
+            ->assertStatus(401);
+    }
+
+    public function test_cannot_create_task_with_invalid_data()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
+
+        $task = Task::factory()->make([
+            'name' => '',
+            'hours' => -1,
+        ])->toArray();
+
+        $response = $this->postJson(route('storeTask'), $task)
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['name', 'hours']);
+    }
 }

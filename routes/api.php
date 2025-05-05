@@ -15,7 +15,7 @@ Route::controller(UserApiController::class)
     ->middleware('auth:sanctum')
     ->group(function () {
         Route::post('store', 'store')->name('storeUser')
-        ->withoutMiddleware('auth_sanctum');
+            ->withoutMiddleware('auth:sanctum');
         Route::put('update/{id}', 'update')->name('updateUser');
         Route::delete('destroy/{id}', 'destroy')->name('destroyUser');
     });

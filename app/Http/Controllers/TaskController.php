@@ -14,8 +14,7 @@ class TaskController extends Controller
      */
     public function index(): JsonResponse
     {
-        $user = auth()->user();
-        $tasks = Task::where('user_id', $user->id);
+        $tasks = Task::where('user_id', auth()->id())->get();
 
         return response()->json([
             'message' => 'showing all the tasks',
