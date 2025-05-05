@@ -7,6 +7,7 @@ Esta é uma API para gerenciamento de tarefas. Com ela, você pode criar, editar
 - **PHP** - Linguagem principal para o backend.
 - **Laravel** - Framework PHP utilizado para o desenvolvimento da API.
 - **SQLite** - Banco de dados utilizado para armazenar as informações do projeto.
+- **PHPUnit** - framework de testes utilizado para testar o projeto.
 
 ## Endpoints da API
 
@@ -75,3 +76,30 @@ Inicie o servidor local para acessar a API:
 `php artisan serve`
 
 Agora, você pode acessar a API através de http://localhost:8000/api no seu navegador ou ferramentas de testes de API como Postman ou Insomnia.
+
+## Testes Automatizados
+
+O projeto possui testes automatizados criados com o PHPUnit (integrado ao Laravel) para garantir a integridade das funcionalidades principais da API.
+
+### Como rodar os testes
+
+1. Verifique se o ambiente de testes está configurado no seu arquivo .env
+    `DB_CONNECTION=sqlite`
+
+2. Execute os testes com o comando: 
+ `php artisan test`
+
+### Testes implementados
+ Criação de tarefas por usuários autenticados
+
+ Bloqueio de criação de tarefas por usuários não autenticados
+
+ Visualização de tarefas (apenas do próprio usuário)
+
+ Impedimento de acesso a tarefas de outros usuários
+
+ Exclusão de tarefas
+
+ Criação de usuários
+
+ Validações de campos obrigatórios e dados inválidos
